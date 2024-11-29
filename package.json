@@ -9,9 +9,12 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "es5-ext": "^0.10.64",
     "plotly.js": "^2.35.2",
     "vue": "^3.2.13",
-    "vue-router": "^4.4.5"
+    "vue-router": "^4.4.5",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^4.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

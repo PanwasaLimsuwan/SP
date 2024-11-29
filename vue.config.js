@@ -1,7 +1,7 @@
-const { defineConfig } = require('@vue/cli-service');
-
-module.exports = defineConfig({
-  transpileDependencies: true,
+module.exports = {
+  transpileDependencies: [
+    'es5-ext',
+  ],
   configureWebpack: {
     resolve: {
       fallback: {
@@ -10,4 +10,4 @@ module.exports = defineConfig({
       },
     },
   },
-});
+}

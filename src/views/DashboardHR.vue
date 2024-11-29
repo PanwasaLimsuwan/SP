@@ -117,23 +117,25 @@
 
     <!-- โซน HeadcountByDivision -->
     <section class="charts">
-  <div class="chart">
-    <button @click="resetFilters">
-      <img src="refresh.png" alt="Refresh" class="refresh-icon" />
-    </button>
-    <HeadcountByDivision
-      :data="headcountDataDivision"
-      @filter="filterEmployeesByDivision"
-    />
-  </div>
-  <div class="table">
-    <EmployeeTable
-      :employees="filteredEmployeesDivision.length > 0 
-                    ? filteredEmployeesDivision 
-                    : employeesSorted"
-    />
-  </div>
-</section>
+      <div class="chart">
+        <button @click="resetFilters">
+          <img src="refresh.png" alt="Refresh" class="refresh-icon" />
+        </button>
+        <HeadcountByDivision
+          :data="headcountDataDivision"
+          @filter="filterEmployeesByDivision"
+        />
+      </div>
+      <div class="table">
+        <EmployeeTable
+          :employees="
+            filteredEmployeesDivision.length > 0
+              ? filteredEmployeesDivision
+              : employeesSorted
+          "
+        />
+      </div>
+    </section>
 
     <section class="charts">
       <div class="chart">
@@ -147,10 +149,12 @@
       </div>
       <div class="table">
         <EmployeeTable
-      :employees="filteredEmployeesBiz.length > 0 
-                    ? filteredEmployeesBiz 
-                    : employeesSorted"
-    />     
+          :employees="
+            filteredEmployeesBiz.length > 0
+              ? filteredEmployeesBiz
+              : employeesSorted
+          "
+        />
       </div>
     </section>
 
@@ -166,10 +170,12 @@
       </div>
       <div class="table">
         <EmployeeTable
-      :employees="filteredEmployeesWorkGroup.length > 0 
-                    ? filteredEmployeesWorkGroup 
-                    : employeesSorted"
-    />    
+          :employees="
+            filteredEmployeesWorkGroup.length > 0
+              ? filteredEmployeesWorkGroup
+              : employeesSorted
+          "
+        />
       </div>
     </section>
 
@@ -358,43 +364,43 @@ export default {
       // ข้อมูลต้นฉบับ
       divisionData: {
         ALL: {
-          labels: ["MF1", "MF2"],
-          values: [40, 30],
+          labels: ["ISM", "DDM", "LDM"],
+          values: [40, 30, 30],
         },
         ISM: {
-          labels: ["ISM", "DDM", "LDM"],
-          values: [10, 20, 15],
+          labels: ["MF1", "MF2"],
+          values: [10, 20],
         },
         DDM: {
-          labels: ["DDM", "LDM", "SM1"],
-          values: [25, 30, 10],
+          labels: ["MF1", "MF2"],
+          values: [25, 30],
         },
         LDM: {
-          labels: ["LDM", "LDM1", "LDM2"],
-          values: [20, 35, 25],
+          labels: ["MF1", "MF2"],
+          values: [20, 35],
         },
       },
 
       bizData: {
         ALL: {
-          labels: ["MOKU", "ASSY", "CSAT", "JUNB"],
-          values: [50, 30, 20, 25],
+          labels: ["IS", "IS-BMS", "HTPS", "MOLED", "SMOLED"],
+          values: [50, 30, 20, 25, 15],
         },
-        MOKU: {
-          labels: ["MOKU1", "MOKU2", "MOKU3"],
-          values: [20, 15, 10],
+        ISBMS: {
+          labels: ["ASSY", "MOKU", "CSAT", "JUNB"],
+          values: [20, 15, 10, 5],
         },
-        ASSY: {
-          labels: ["ASSY1", "ASSY2", "ASSY3"],
-          values: [10, 23, 38],
+        HTPS: {
+          labels: ["ASSY", "MOKU", "CSAT", "JUNB"],
+          values: [10, 23, 38, 12],
         },
-        CSAT: {
-          labels: ["CSAT1", "CSAT2"],
-          values: [5, 10],
+        MOLED: {
+          labels: ["ASSY", "MOKU", "CSAT", "JUNB"],
+          values: [5, 10, 15, 20],
         },
-        JUNB: {
-          labels: ["JUNB1", "JUNB2", "JUNB3"],
-          values: [8, 9, 8],
+        SMOLED: {
+          labels: ["ASSY", "MOKU", "CSAT", "JUNB"],
+          values: [8, 9, 8, 7],
         },
       },
       headcountDataDivision: {
@@ -544,7 +550,7 @@ export default {
       selectedEmployee: null, // พนักงานที่ถูกเลือก
       // selectedSkill: null, // สกิลที่ถูกเลือก
       // selectedShiftcode: "A",
-    //   filteredShiftData: {},
+      //   filteredShiftData: {},
       selectedDivision: "ALL",
       // ข้อมูลที่กรองแล้ว
       filteredDivisionData: {},
@@ -579,10 +585,10 @@ export default {
     //   console.log("Filtered Employees by Division:", this.filteredEmployeesDivision);
     // },
     filterEmployeesByDivision(division) {
-  this.filteredEmployeesDivision = this.sortEmployeesByStatus(
-    this.employees.filter((employee) => employee.Division === division)
-  );
-},
+      this.filteredEmployeesDivision = this.sortEmployeesByStatus(
+        this.employees.filter((employee) => employee.Division === division)
+      );
+    },
 
     // filterEmployeesByBiz(biz) {
     //   // กรองพนักงานตาม Biz ที่เลือก
@@ -592,22 +598,22 @@ export default {
     //   );
     // },
     filterEmployeesByBiz(biz) {
-  this.filteredEmployeesBiz = this.sortEmployeesByStatus(
-    this.employees.filter((employee) => employee.Biz === biz)
-  );
-},
-//     filterEmployeesByWorkGroup(workgroup) {
-//       // กรองพนักงานตาม WorkGroup ที่เลือก
-//       console.log("Filtering by WorkGroup:", workgroup);
-//       this.filteredEmployeesWorkGroup = this.employees.filter(
-//         (employee) => employee.WorkGroup === workgroup
-//       );
-//     },
-filterEmployeesByWorkGroup(workgroup) {
-  this.filteredEmployeesWorkGroup = this.sortEmployeesByStatus(
-    this.employees.filter((employee) => employee.WorkGroup === workgroup)
-  );
-},
+      this.filteredEmployeesBiz = this.sortEmployeesByStatus(
+        this.employees.filter((employee) => employee.Biz === biz)
+      );
+    },
+    //     filterEmployeesByWorkGroup(workgroup) {
+    //       // กรองพนักงานตาม WorkGroup ที่เลือก
+    //       console.log("Filtering by WorkGroup:", workgroup);
+    //       this.filteredEmployeesWorkGroup = this.employees.filter(
+    //         (employee) => employee.WorkGroup === workgroup
+    //       );
+    //     },
+    filterEmployeesByWorkGroup(workgroup) {
+      this.filteredEmployeesWorkGroup = this.sortEmployeesByStatus(
+        this.employees.filter((employee) => employee.WorkGroup === workgroup)
+      );
+    },
     filterEmployeesBySkillLevel(selectedLevel) {
       const levelMapping = {
         "Not Trained": 0,
@@ -678,14 +684,18 @@ filterEmployeesByWorkGroup(workgroup) {
       this.filteredSkillEmployees = this.employees; // รีเซ็ตข้อมูลกลับไปที่ทั้งหมด
       this.filteredFullySkilled = this.employees;
       // this.filteredEmployees = [];
-      this.filteredEmployeesDivision = this.sortEmployeesByStatus(this.employees);
+      this.filteredEmployeesDivision = this.sortEmployeesByStatus(
+        this.employees
+      );
       this.filteredEmployeesBiz = this.sortEmployeesByStatus(this.employees);
-      this.filteredEmployeesWorkGroup = this.sortEmployeesByStatus(this.employees);
+      this.filteredEmployeesWorkGroup = this.sortEmployeesByStatus(
+        this.employees
+      );
       this.filteredEmployees = this.sortEmployeesByStatus(this.employees);
-//     this.filteredEmployees = this.employees;  // รีเซ็ตกลับไปที่ทั้งหมด
-//    this.filteredEmployeesDivision = this.employees;
-//    this.filteredEmployeesBiz = this.employees;
-//    this.filteredEmployeesWorkGroup = this.employees;
+      //     this.filteredEmployees = this.employees;  // รีเซ็ตกลับไปที่ทั้งหมด
+      //    this.filteredEmployeesDivision = this.employees;
+      //    this.filteredEmployeesBiz = this.employees;
+      //    this.filteredEmployeesWorkGroup = this.employees;
       // this.recommendedEmployees = [];
       // this.selectedEmployee = null;
       console.log("Filters reset. Showing all employees.");
@@ -719,7 +729,9 @@ filterEmployeesByWorkGroup(workgroup) {
 
     this.filteredEmployeesDivision = this.sortEmployeesByStatus(this.employees);
     this.filteredEmployeesBiz = this.sortEmployeesByStatus(this.employees);
-    this.filteredEmployeesWorkGroup = this.sortEmployeesByStatus(this.employees);
+    this.filteredEmployeesWorkGroup = this.sortEmployeesByStatus(
+      this.employees
+    );
     this.filteredFullySkilled = this.employees;
     this.filteredEmployees = this.sortEmployeesByStatus(this.employees);
   },

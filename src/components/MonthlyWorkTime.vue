@@ -40,7 +40,7 @@ export default {
       ];
 
       const layout = {
-        title: "Weekly Overtime (OT)",
+        title: "Monthly Overtime (OT)",
         xaxis: {
           title: "Months",
         },
